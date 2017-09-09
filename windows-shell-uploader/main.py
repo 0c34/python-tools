@@ -26,7 +26,7 @@ def send_payload(url, data, output):
 	req.add_header('User-agent', 'Mozilla/5.0')
 	for line in data:
 		fixline = "%s %s" %(line,output)
-		print ']sending payload to the target]'
+		print '[sending payload to the target]'
 		r = urllib2.urlopen(url+urllib.quote(fixline))
 		if r.code == 200:
 			print "[Success]"
