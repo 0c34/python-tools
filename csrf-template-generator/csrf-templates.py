@@ -19,10 +19,10 @@ def csrf_basic(action_url,req_body):
 
     data = parse_qs(req_body) #parsing data parameter ke dalam dictionary
     
-    params =  [ var for var in data.keys()]
+    params =  [ var for var in data]
     template = "<form method='POST' action='%s'>\n" %(action_url)
     for param in params:
-        template += "<input type='hidden' name='%s' value='csrf-tes-value'>\n" %(param)
+        template += "<input type='hidden' name='%s' value='%s'>\n" %(param,data[param][0])
 
     template +="<input type='submit' name='Jancok' value='Run Run To You'>\n</form>"
 
